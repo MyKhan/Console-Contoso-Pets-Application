@@ -1,4 +1,5 @@
 // the ourAnimals array will store the following: 
+using System.Collections.Concurrent;
 using System.Runtime.InteropServices;
 
 string animalSpecies = "";
@@ -273,7 +274,58 @@ do
 
         case "3":
             // Ensure animal ages and physical descriptions are complete
-            Console.WriteLine("this app feature is coming soon - please check back to see progress.");
+            /* ourAnimals[petCount, 0] = "ID #: " + animalID;
+            ourAnimals[petCount, 1] = "Species: " + animalSpecies;
+            ourAnimals[petCount, 2] = "Age: " + animalAge;
+            ourAnimals[petCount, 3] = "Nickname: " + animalNickname;
+            ourAnimals[petCount, 4] = "Physical description: " + animalPhysicalDescription;
+            ourAnimals[petCount, 5] = "Personality: " + animalPersonalityDescription; */
+
+            for (int i = 0; i < maxPets; i++)
+            {
+                if (ourAnimals[i, 0] != "ID #: ")
+                {
+                    //Fix Age
+                    if (ourAnimals[i, 2] == "Age: ?")
+                    {
+                        bool validEntry = false;
+                        do
+                        {
+                            Console.WriteLine($"Enter Age for {ourAnimals[i, 0]}");
+                            readResult = Console.ReadLine();
+
+                            if (readResult != "")
+                            {
+                                validEntry = int.TryParse(readResult, out int petAge);
+                                if (validEntry)
+                                {
+                                    ourAnimals[i, 2] = "Age: " + petAge;
+                                }
+                            }
+                        } while (!validEntry);
+                    }
+
+                    // Fix Physical Description
+                    if (ourAnimals[i, 4] == "Physical description: tbd" || ourAnimals[i, 4] == "Physical description: ")
+                    {
+                        bool validEntry = false;
+                        do
+                        {
+                            Console.WriteLine($"Enter Description] for {ourAnimals[i,0]}");
+                            readResult = Console.ReadLine();
+
+                            if (readResult != null && readResult != "")
+                            {
+                                string petPhysicalDescription = readResult;
+                                validEntry = true;
+                                ourAnimals[i, 4] = "Physical description: " + petPhysicalDescription;
+                            }
+                        } while (!validEntry);
+                    }
+                }
+            }
+
+
             Console.WriteLine("Press the Enter key to continue.");
             readResult = Console.ReadLine();
             break;
