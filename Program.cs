@@ -332,7 +332,20 @@ do
 
         case "4":
             // Ensure animal nicknames and personality descriptions are complete
-            Console.WriteLine("this app feature is coming soon - please check back to see progress.");
+            
+            for (int i = 0; i<maxPets; i++) {
+                if (ourAnimals[i,0] != "ID #: ") {
+                    if (ourAnimals[i,3] == "Nickname: ") {
+                        Console.WriteLine($"Enter nickname for {ourAnimals[i,0]}");
+                        readResult = Console.ReadLine();
+                        if (readResult != null && readResult != "") {
+                            animalNickname = readResult;
+                            ourAnimals[i,3] = "Nickname: " + animalNickname;
+                        }
+                    }
+                }
+            }
+
             Console.WriteLine("Press the Enter key to continue.");
             readResult = Console.ReadLine();
             break;
