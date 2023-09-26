@@ -311,7 +311,7 @@ do
                         bool validEntry = false;
                         do
                         {
-                            Console.WriteLine($"Enter Description] for {ourAnimals[i,0]}");
+                            Console.WriteLine($"Enter Description] for {ourAnimals[i, 0]}");
                             readResult = Console.ReadLine();
 
                             if (readResult != null && readResult != "")
@@ -332,16 +332,47 @@ do
 
         case "4":
             // Ensure animal nicknames and personality descriptions are complete
-            
-            for (int i = 0; i<maxPets; i++) {
-                if (ourAnimals[i,0] != "ID #: ") {
-                    if (ourAnimals[i,3] == "Nickname: ") {
-                        Console.WriteLine($"Enter nickname for {ourAnimals[i,0]}");
-                        readResult = Console.ReadLine();
-                        if (readResult != null && readResult != "") {
-                            animalNickname = readResult;
-                            ourAnimals[i,3] = "Nickname: " + animalNickname;
-                        }
+
+            for (int i = 0; i < maxPets; i++)
+            {
+
+                //Fix Age
+                if (ourAnimals[i, 0] != "ID #: ")
+                {
+                    if (ourAnimals[i, 3] == "Nickname: ")
+                    {
+                        bool validEntry = false;
+                        do
+                        {
+                            Console.WriteLine($"Enter nickname for {ourAnimals[i, 0]}");
+                            readResult = Console.ReadLine();
+                            if (readResult != null && readResult != "")
+                            {
+                                animalNickname = readResult;
+                                ourAnimals[i, 3] = "Nickname: " + animalNickname;
+                                validEntry = true;
+                            }
+                        } while (!validEntry);
+                    }
+                }
+
+                //Fix Personality Descriptions
+                if (ourAnimals[i, 0] != "ID #: ")
+                {
+                    if (ourAnimals[i, 5] == "Personality: ")
+                    {
+                        bool validEntry = false;
+                        do
+                        {
+                            Console.WriteLine($"Enter personality description for {ourAnimals[i, 0]}");
+                            readResult = Console.ReadLine();
+                            if (readResult != null && readResult != "")
+                            {
+                                animalPersonalityDescription = readResult;
+                                ourAnimals[i, 5] = "Personality: " + animalPersonalityDescription;
+                                validEntry = true;
+                            }
+                        } while (!validEntry);
                     }
                 }
             }
